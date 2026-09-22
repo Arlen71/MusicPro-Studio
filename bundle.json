@@ -263,8 +263,8 @@
     },
     {
       "path": "developer/e2e_playlist.py",
-      "size": 10467,
-      "sha256": "23f238f708d62e5ad0c168a524165c979b44f3b4d77d061b7a934bf529c76758"
+      "size": 10516,
+      "sha256": "525cc9214513b634f8ec2508502168ff5904face87b2d38f110805a24bb98305"
     },
     {
       "path": "developer/e2e_portable.py",

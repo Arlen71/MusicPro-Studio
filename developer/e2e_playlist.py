@@ -103,7 +103,7 @@ with tempfile.TemporaryDirectory(prefix='MusicPro 1.7 Playlist Ўзбек ') as 
         print('Planning passed; damaged music, licensed video and ordinary clip after planning.',flush=True)
         # Exactly one start request. No resume/continue/confirmation request follows.
         post('run');state=settled()
-        assert state['status']=='completed_issues',state['message']
+        assert state['status']=='completed_issues',(state['message'],json.dumps(state['issues'],ensure_ascii=False))
         assert len(state['jobs'])==2 and all(j['status']=='done' for j in state['jobs']),state
         assert damaged<={r['path'] for r in state['issues']},state['issues']
         final=json.loads((root/'data/session.json').read_text())
