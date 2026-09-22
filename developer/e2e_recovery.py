@@ -76,7 +76,11 @@ with tempfile.TemporaryDirectory(prefix='MusicPro 1.7 Ўзбек ') as temp:
                 time.sleep(.15)
             raise AssertionError('Timed out: '+str(get('state').get('message')))
         c={k:str(root/k) for k in ('clips','licenses','music','output')}
-        c.update(total=3,license_count=1,first_license=1,license_gap=.5,fps=30,height=720,
+        # license_count equals the number of licensed sources, so every plan uses
+        # both and the damaged one is always attempted. With one slot a re-plan
+        # (each draws a fresh seed) could pick the healthy source every time and
+        # the damaged file would legitimately never reach the issues list.
+        c.update(total=3,license_count=2,first_license=1,license_gap=.5,fps=30,height=720,
                  quality='economy',mode='beat',cut_min=.5,cut_max=1,device='cpu',
                  resources='medium',effects='edit',effect_strength='balanced',effect_gap=2)
         post('plan',c);state=settled();assert state['status']=='ready',state

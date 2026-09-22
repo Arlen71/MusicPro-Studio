@@ -273,13 +273,13 @@
     },
     {
       "path": "developer/e2e_recovery.py",
-      "size": 7174,
-      "sha256": "419aac9fa96378152920c39d155c6e6c88f6fb33abbbd5e0578b216e8ccc176d"
+      "size": 7492,
+      "sha256": "8c37fc70b7777291257a660daa2178710bb35704c8db19d9b3b077b34ea75369"
     },
     {
       "path": "developer/fetch_binaries.py",
-      "size": 13594,
-      "sha256": "af2b58d8b64f9202caeb096630a90674f18ae3a37868e82cdb9c7d996f6fc6e5"
+      "size": 13767,
+      "sha256": "177370480c5ad548127b9643bd09ff116e35ef987c5404bb37969db4d993876e"
     },
     {
       "path": "developer/launcher.c",

@@ -204,7 +204,9 @@ def extract(source: Source, archive_path: Path, root: Path) -> list[str]:
 
 def finish(source: Source, root: Path, placed: list[str]):
     if source.extract_all_into == 'runtime':
-        (root / 'runtime' / 'python313._pth').write_text(PTH_CONTENT, encoding='ascii')
+        # newline='\n': on Windows, text mode would otherwise write CRLF and the
+        # file would no longer match the LF original recorded in bundle.json.
+        (root / 'runtime' / 'python313._pth').write_text(PTH_CONTENT, encoding='ascii', newline='\n')
     if source.executable:
         for relative in placed:
             path = root / relative

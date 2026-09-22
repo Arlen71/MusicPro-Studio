@@ -35,8 +35,8 @@ jobs:
       matrix:
         python: ["3.11", "3.13"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
       - name: Install system FFmpeg
@@ -60,21 +60,23 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
       - name: Restore downloaded archives
         id: archives
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: developer/.cache
           key: binaries-windows-${{ hashFiles('developer/fetch_binaries.py') }}
       - name: Fetch the Windows runtime and FFmpeg (SHA-256 verified)
         run: python developer/fetch_binaries.py --platform windows
       - name: Save downloaded archives
-        if: steps.archives.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        # Archives are SHA-256 verified before use, so caching them is safe even
+        # when a later verification step failed.
+        if: always() && steps.archives.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v6
         with:
           path: developer/.cache
           key: ${{ steps.archives.outputs.cache-primary-key }}
@@ -88,21 +90,23 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
       - name: Restore downloaded archives
         id: archives
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: developer/.cache
           key: binaries-macos-${{ hashFiles('developer/fetch_binaries.py') }}
       - name: Fetch the macOS FFmpeg (SHA-256 verified)
         run: python developer/fetch_binaries.py --platform macos
       - name: Save downloaded archives
-        if: steps.archives.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        # Archives are SHA-256 verified before use, so caching them is safe even
+        # when a later verification step failed.
+        if: always() && steps.archives.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v6
         with:
           path: developer/.cache
           key: ${{ steps.archives.outputs.cache-primary-key }}
