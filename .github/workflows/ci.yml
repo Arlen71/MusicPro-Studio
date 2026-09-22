@@ -1,0 +1,115 @@
+# Three platforms, three roles:
+#   Linux   — the original developer's test environment: system FFmpeg, lint,
+#             unit tests and the CPU end-to-end suites (real server + renders).
+#   Windows — the shipped Windows package: fetch_binaries.py restores the exact
+#             embedded Python and FFmpeg (SHA-256 verified), then the unit tests
+#             run against them.
+#   macOS   — the shipped Apple Silicon package, the same way.
+# The third-party binaries are not in git; fetched archives are cached by the
+# checksums pinned in developer/fetch_binaries.py.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUTF8: "1"
+
+jobs:
+  linux:
+    name: Linux · lint, unit, e2e · Python ${{ matrix.python }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install system FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
+      - name: Lint
+        run: |
+          python -m pip install --quiet ruff
+          python developer/tasks.py lint
+      - name: Unit tests
+        run: python developer/tasks.py test
+      - name: bundle.json matches the tracked files
+        run: python developer/build_manifest.py --check --ignore-missing
+      - name: End-to-end (real server, isolated workers, encoded outputs)
+        run: python developer/tasks.py e2e
+
+  windows:
+    name: Windows · unit tests with the packaged FFmpeg
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Restore downloaded archives
+        id: archives
+        uses: actions/cache/restore@v4
+        with:
+          path: developer/.cache
+          key: binaries-windows-${{ hashFiles('developer/fetch_binaries.py') }}
+      - name: Fetch the Windows runtime and FFmpeg (SHA-256 verified)
+        run: python developer/fetch_binaries.py --platform windows
+      - name: Save downloaded archives
+        if: steps.archives.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: developer/.cache
+          key: ${{ steps.archives.outputs.cache-primary-key }}
+      - name: Unit tests
+        run: python developer/tasks.py test
+      - name: bundle.json matches the tracked and fetched files
+        run: python developer/build_manifest.py --check --ignore-missing
+
+  macos:
+    name: macOS (Apple Silicon) · unit tests with the packaged FFmpeg
+    runs-on: macos-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Restore downloaded archives
+        id: archives
+        uses: actions/cache/restore@v4
+        with:
+          path: developer/.cache
+          key: binaries-macos-${{ hashFiles('developer/fetch_binaries.py') }}
+      - name: Fetch the macOS FFmpeg (SHA-256 verified)
+        run: python developer/fetch_binaries.py --platform macos
+      - name: Save downloaded archives
+        if: steps.archives.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: developer/.cache
+          key: ${{ steps.archives.outputs.cache-primary-key }}
+      - name: Unit tests
+        run: python developer/tasks.py test
+      - name: bundle.json matches the tracked and fetched files
+        run: python developer/build_manifest.py --check --ignore-missing
+      - name: VideoToolbox end-to-end (experimental — hardware encoding is not guaranteed on hosted runners)
+        continue-on-error: true
+        run: python developer/e2e_macos.py

@@ -12,7 +12,7 @@ from pathlib import Path
 EXCLUDE = {'data', '__pycache__', '.git', 'installed.flag', 'Uninstall.exe',
            'bundle.json', 'install_files.nsh', 'uninstall_files.nsh', 'launcher.res',
            # Repository and developer tooling; end users never need these.
-           '.gitignore', '.gitattributes', '.editorconfig', 'pyproject.toml', 'Makefile',
+           '.github', '.gitignore', '.gitattributes', '.editorconfig', 'pyproject.toml', 'Makefile',
            '.ruff_cache', '.pytest_cache', '.venv', '.cache', 'dist'}
 
 

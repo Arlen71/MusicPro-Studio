@@ -51,6 +51,9 @@ def main():
     parser.add_argument('--bundle', type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument('--check', action='store_true',
                         help='Report drift without rewriting bundle.json.')
+    parser.add_argument('--ignore-missing', action='store_true',
+                        help='With --check: files listed in bundle.json but absent on disk are reported, '
+                             'not counted as drift. For checkouts without the fetched binaries (CI).')
     args = parser.parse_args()
     bundle = args.bundle.resolve()
     manifest = build(bundle)
@@ -66,10 +69,13 @@ def main():
         added = sorted(now.keys() - was.keys())
         removed = sorted(was.keys() - now.keys())
         changed = sorted(p for p in now.keys() & was.keys() if now[p] != was[p])
-        for label, items in (('added', added), ('removed', removed), ('changed', changed)):
+        missing = [p for p in removed if not (bundle / p).exists()] if args.ignore_missing else []
+        removed = [p for p in removed if p not in missing]
+        for label, items in (('added', added), ('removed', removed), ('changed', changed), ('missing', missing)):
             for item in items:
                 print(f'{label:8} {item}')
-        print(f'{len(manifest["files"])} files; {len(added)} added, {len(removed)} removed, {len(changed)} changed')
+        print(f'{len(manifest["files"])} files; {len(added)} added, {len(removed)} removed, {len(changed)} changed'
+              + (f', {len(missing)} missing (ignored)' if args.ignore_missing else ''))
         raise SystemExit(1 if added or removed or changed else 0)
 
     target.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')

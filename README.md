@@ -1,5 +1,7 @@
 # MusicPro Studio
 
+[![CI](https://github.com/Arlen71/MusicPro-Studio/actions/workflows/ci.yml/badge.svg)](https://github.com/Arlen71/MusicPro-Studio/actions/workflows/ci.yml)
+
 Oflayn ommaviy video-montaj dasturi. Bo‘laklar papkasi, litsenziyalangan
 videolar va musiqalardan tayyor videolar yasaydi: har bir video o‘z musiqasi
 (yoki playlisti) uzunligida, litsen parchalari qoidaga muvofiq joylashtirilgan,

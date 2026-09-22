@@ -28,8 +28,8 @@
     },
     {
       "path": "README.md",
-      "size": 6431,
-      "sha256": "3e8a621ce267cff9df0ed65605bac2b7434f6545392a26f78ac8c810a8abaafc"
+      "size": 6588,
+      "sha256": "ea9907bcf9a7e05ca8df323b1102a978ea437592ee6183a28d6e48d9625cc0d0"
     },
     {
       "path": "README.txt",
@@ -243,13 +243,13 @@
     },
     {
       "path": "developer/build_manifest.py",
-      "size": 3225,
-      "sha256": "961cc0b67eb11e7637a6c572dc66fa03183d5d925e115c2702aaa619dc293ac3"
+      "size": 3767,
+      "sha256": "4a5696ce6e0133d22234f4f498560fcdcb54fb0b91164bdd2c7619495f945a9f"
     },
     {
       "path": "developer/build_release.py",
-      "size": 5875,
-      "sha256": "0ed028bb1c8a74dbc17bebdfb997d7102249c1d3316c13b2f2787b3498c8ac0c"
+      "size": 5886,
+      "sha256": "95b6d58306125c8b79bb3d4642723fa235f0edd15d1e7c7d7eeaa5436730504a"
     },
     {
       "path": "developer/e2e_macos.py",
