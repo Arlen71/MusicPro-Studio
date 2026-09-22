@@ -32,15 +32,20 @@ class PortableTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             folder = Path(temp)
             guard = InstanceLock(folder)
-            self.assertTrue(guard.acquire())
             code = ('from pathlib import Path; from runtime_support import InstanceLock; '
                     'import sys; g=InstanceLock(Path(sys.argv[1])); '
                     'print(g.acquire()); g.close()')
-            result = subprocess.run([sys.executable, '-c', code, temp], cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True)
-            self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertEqual(result.stdout.strip(), 'False')
+            try:
+                self.assertTrue(guard.acquire())
+                result = subprocess.run([sys.executable, '-c', code, temp], cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(result.stdout.strip(), 'False')
+            finally:
+                # Release even on failure: Windows cannot delete a directory whose lock file is still open.
+                guard.close()
+            # Windows byte locks are mandatory, so the byte is readable only once released.
+            # The rejected second process must not have rewritten it while it was held.
             self.assertEqual((folder/'instance.lock').read_bytes(), b'0')
-            guard.close()
             result = subprocess.run([sys.executable, '-c', code, temp], cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True)
             self.assertEqual(result.stdout.strip(), 'True', result.stderr)
 

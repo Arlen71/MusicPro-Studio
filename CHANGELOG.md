@@ -28,6 +28,24 @@ kerak; `bundle.json` har bir paketning fayl-hash qulf-fayli.
   `fetch`, `run`, `clean`, `ci` vazifalari.
 - `pyproject.toml` (ruff sozlamasi), `.gitignore`, `.gitattributes`, `.editorconfig`,
   `README.md`, ushbu `CHANGELOG.md`.
+- GitHub Actions CI (`.github/workflows/ci.yml`): Linux (tizim FFmpeg — lint, 79 unit
+  test, 4 CPU E2E), Windows va macOS (Apple Silicon) — `fetch_binaries.py` orqali
+  aynan paketdagi binarlar bilan unit testlar. Windows paketi birinchi marta haqiqiy
+  Windows’da avtomatik sinaladi.
+
+### Tuzatildi
+- `developer/e2e_recovery.py` nodeterministik edi: har qayta rejalash yangi urug‘
+  oladi, bitta litsen o‘rni bilan buzilgan litsen ~12% holatda hech qaysi rejaga
+  tushmasdi. Endi `license_count=2` (`e2e_playlist.py` dagidek) — har rejada ikkala
+  litsen ishlatiladi.
+- `app/tests/test_portable.py`: qulf ushlab turganda `instance.lock` o‘qilardi —
+  Windows’da `msvcrt.locking` majburiy qulf, o‘qish rad etiladi. Tekshiruv
+  bo‘shatilgandan keyinga ko‘chirildi; `try/finally` bilan qulf har doim bo‘shatiladi.
+- `developer/fetch_binaries.py`: `python313._pth` Windows’da CRLF bilan yozilardi va
+  `bundle.json` ga mos kelmasdi (`newline='\n'`).
+- ruff: 17 ta ishlatilmagan import va 1 ta o‘lik o‘zgaruvchi olib tashlandi;
+  `test_recovery.py` `StorageError` ni `engine` star-importidan tasodifan olardi —
+  endi `failures` dan aniq import.
 
 ### O‘zgartirildi
 - `app/resources.py`: macOS’da bo‘sh xotira `vm_stat` orqali o‘lchanadi
