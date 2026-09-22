@@ -1,0 +1,37 @@
+# MusicPro Studio is not installed with pip: it runs straight from app/ with the
+# Python it ships with (Windows) or finds (macOS). This file only carries project
+# metadata and tool configuration. The version of record is VERSION in
+# app/runtime_support.py; keep the two in step when releasing.
+
+[project]
+name = "musicpro-studio"
+version = "1.8.0"
+description = "Offline batch video montage: clips, licensed excerpts and music into finished videos with Playlist TXT and Excel license reports."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["ruff"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+extend-exclude = ["runtime", "app/bin", "licenses"]
+
+[tool.ruff.lint]
+# Pyflakes and the syntax/runtime error classes: real defects only. The dense
+# one-statement-per-line style of the application code is deliberate and is
+# verified by the test suite, so layout rules are not enforced here.
+select = ["F", "E4", "E7", "E9", "W6"]
+ignore = [
+    "E401",                  # several modules in one import — house style
+    "E701", "E702", "E703",  # multiple statements on one line — house style
+    "E731",                  # lambda assignment — used for tiny local helpers
+    "E741",                  # single-letter names such as `l` in tight loops
+    "F403", "F405",          # app.py deliberately re-exports engine via *
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Developer scripts put app/ on sys.path before importing from it.
+"developer/*.py" = ["E402"]
+"app/tests/*.py" = ["E402"]

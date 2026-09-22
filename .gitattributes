@@ -1,0 +1,16 @@
+# bundle.json records the SHA-256 of every packaged file and TEKSHIRISH verifies
+# it byte for byte on the user's computer, so git must never rewrite line
+# endings on commit or checkout — not even with core.autocrlf on Windows.
+# Line endings are an editor concern: see .editorconfig (LF, except *.bat CRLF).
+* -text
+
+# Third-party and generated binaries: no diffs, no merges.
+*.exe  binary
+*.dll  binary
+*.pyd  binary
+*.cat  binary
+*.zip  binary
+*.ico  binary
+*.xlsx binary
+app/bin/ffmpeg  binary
+app/bin/ffprobe binary
