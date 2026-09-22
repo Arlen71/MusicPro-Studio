@@ -13,8 +13,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 4697,
-      "sha256": "dd0a87bc2faaf5fe3551ce2d8673ee116c016958f56382f8bc4740f0d4e4f526"
+      "size": 5347,
+      "sha256": "d9c8eda8977b0911af0b34287534f27b7b6789922da66a8fbe9de74b20ea845f"
     },
     {
       "path": "MusicPro.command",
@@ -58,8 +58,8 @@
     },
     {
       "path": "TEST_REPORT.md",
-      "size": 6992,
-      "sha256": "708407297ba8bfb116222d7fd0e5070d54b67c9b4178025881f142f21aed586b"
+      "size": 7747,
+      "sha256": "58dab339280e7e6d87aef59c3a66a03db5a5a83752ad274fe033fe03fe822d81"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -118,8 +118,8 @@
     },
     {
       "path": "app/engine.py",
-      "size": 28562,
-      "sha256": "563ebceec7bc921fb0ddad0e95c0eab65d36072dd01c966260236277e5c8ac8a"
+      "size": 28797,
+      "sha256": "6c705117be6ad79794981a6ef56d93358f7e81e08d118601c6d4e9363c26262c"
     },
     {
       "path": "app/failures.py",
@@ -208,8 +208,8 @@
     },
     {
       "path": "app/tests/test_updates.py",
-      "size": 10977,
-      "sha256": "9c8812784e218dfa1741e6aeb12e6a268bf0cff35cf5752eb777b07d0447c1d3"
+      "size": 12846,
+      "sha256": "8030fc12ce09e58590749a66b621ce41bd22e95d920bbed86cb2c02261ae2bce"
     },
     {
       "path": "app/web/studio.css",

@@ -378,7 +378,10 @@ def render(plan,c,dest,enc,stop,progress):
             path=work/f'{i:05}.mp4'; duration=s['frames']/fps
             cmd=[binary('ffmpeg'),'-nostdin','-v','error','-xerror','-y','-err_detect','explode']
             cmd+=['-filter_threads',str(budget['filter_threads']),'-threads',str(budget['decode_threads'])]
-            if s['source_start']: cmd+=['-ss',str(s['source_start'])]
+            # Fixed-point, never str(): offsets below 1e-4 print as "3.1e-05",
+            # which ffmpeg's time parser rejects, and a healthy source would be
+            # excluded as unreadable. Plans store at most six decimals.
+            if s['source_start']: cmd+=['-ss',f"{s['source_start']:.6f}"]
             cmd+=['-i',s['asset']['path']]
             # At most one source-frame interval; never hide a truncated source by
             # freezing its final frame for the whole requested segment duration.

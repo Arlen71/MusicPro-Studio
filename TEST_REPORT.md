@@ -87,6 +87,17 @@ real click inside the Finder folder panel.
   the 79 unit tests, and `e2e_macos.py` (VideoToolbox) as a non-blocking step,
   which has passed on hosted runners so far.
 
+CI found one real defect in the rendering engine. `e2e_playlist.py` failed on
+Linux with "Tayyor: 0/2" and eight issues; with the issues list added to the
+assertion, the cause was `clip_a.mp4: Invalid duration for option ss: 3.1e-05`.
+Beat-mode clip offsets are random floats, and any value below 1e-4 s reached
+ffmpeg in Python's exponent notation, which its time parser rejects; after two
+failed attempts the healthy clip was excluded as unreadable, and with the other
+clip deliberately damaged no ordinary source remained. Reproduced locally in 2
+of 16 runs with one segment worker (the 4-core runner's budget). Fixed by
+passing `-ss` as a fixed-point string; `SourceOffsetTests` renders such offsets
+with the real encoder. The suite is now 80 tests.
+
 ## Commands
 
 From app: `python3 -m unittest discover -s tests -v`

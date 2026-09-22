@@ -1,5 +1,6 @@
 """Release 1.3: duration boundaries, protected pixels and resource budgets."""
 import copy
+import re
 import sys
 import tempfile
 import threading
@@ -170,6 +171,31 @@ class EffectTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp,patch('engine.execute',side_effect=execute_fake),patch('engine.probe',return_value={'duration':6}),patch('engine.verify_input'):
             with self.assertRaises(UserError):render(p,c,tmp,'libx264',threading.Event(),lambda value:None)
             self.assertTrue(cancelled.is_set());self.assertFalse(list(Path(tmp).glob('_work_*')))
+
+
+class SourceOffsetTests(unittest.TestCase):
+    def test_tiny_source_offsets_reach_ffmpeg_as_fixed_point(self):
+        """A beat-mode seek below 1e-4 s used to be passed as "3.1e-05", which ffmpeg's
+        time parser rejects; the healthy source was then excluded as unreadable and a
+        batch could end with no ordinary clip left. Render for real with such offsets."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); fps=25
+            execute([binary('ffmpeg'),'-v','error','-y','-f','lavfi','-i','testsrc2=s=160x90:r=25:d=1.5','-threads','1','-c:v','libx264',str(root/'clip.mp4')])
+            execute([binary('ffmpeg'),'-v','error','-y','-f','lavfi','-i','sine=frequency=330:duration=5',str(root/'song.wav')])
+            c=config(fps=fps,license_count=0,first_license=0,mode='beat',cut_min=.5,cut_max=1)
+            plan=plan_one([probe(root/'clip.mp4','video')],[],probe(root/'song.wav','audio'),c,5,[x/2 for x in range(1,12)])
+            clips=[s for s in plan['segments'] if s['kind']=='clip']
+            self.assertGreaterEqual(len(clips),3)
+            clips[0]['source_start']=3.1e-05; clips[1]['source_start']=round(0.000123,6)
+            validate_plan(plan,c)
+            seen=[]; real=execute
+            def recording(args,*rest,**kw): seen.append(list(args)); return real(args,*rest,**kw)
+            with patch('engine.execute',side_effect=recording):
+                render(plan,c,root/'out','libx264',threading.Event(),lambda value:None)
+            seeks=[a[i+1] for a in seen for i,flag in enumerate(a[:-1]) if flag=='-ss']
+            self.assertIn('0.000031',seeks); self.assertIn('0.000123',seeks)
+            self.assertTrue(all(re.fullmatch(r'\d+\.\d{6}',value) for value in seeks),seeks)
+            self.assertAlmostEqual(probe(root/'out/video.mp4','video')['duration'],5,delta=2/fps+.05)
 
 
 if __name__=='__main__':unittest.main(verbosity=2)

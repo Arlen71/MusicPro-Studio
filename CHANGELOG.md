@@ -34,6 +34,14 @@ kerak; `bundle.json` har bir paketning fayl-hash qulf-fayli.
   Windows’da avtomatik sinaladi.
 
 ### Tuzatildi
+- **`app/engine.py`: sog‘lom manba noto‘g‘ri chiqarib tashlanardi.** Musiqaga mos
+  (beat) rejimda bo‘lak ofseti `1e-4` s dan kichik chiqsa, `-ss` ga Python’ning
+  ilmiy yozuvi (`3.1e-05`) uzatilardi; ffmpeg vaqt parseri uni rad etadi
+  (`Invalid duration for option ss`), segment ikki marta yiqiladi va manba
+  “render qilinmadi” deb bloklanadi — oxirgi bo‘lak bo‘lsa, butun navbat
+  “Yaroqli oddiy bo‘lak qolmadi” bilan tugaydi. Har qayta rejalash yuzlab ofset
+  tortgani uchun run’ga ~5–12 % ehtimol edi; CI shuni tutdi. Endi `-ss` qat’iy
+  o‘nlik (`0.000031`); haqiqiy ffmpeg bilan regressiya testi qo‘shildi.
 - `developer/e2e_recovery.py` nodeterministik edi: har qayta rejalash yangi urug‘
   oladi, bitta litsen o‘rni bilan buzilgan litsen ~12% holatda hech qaysi rejaga
   tushmasdi. Endi `license_count=2` (`e2e_playlist.py` dagidek) — har rejada ikkala
