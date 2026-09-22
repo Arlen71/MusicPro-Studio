@@ -70,9 +70,22 @@ bundled FFmpeg/ffprobe 9.0 arm64 static (GPL, libx264) in `app/bin/`.
 
 Not executed on macOS: Intel (x86_64) Macs, since the bundled binaries are
 arm64-only; the Gatekeeper first-open flow for a quarantined download; and a
-real click inside the Finder folder panel. Windows behaviour was not re-tested
-on this host — every platform-specific change is guarded by `os.name`/
-`sys.platform`, and the Windows binaries and `win_dialog.py` are unchanged.
+real click inside the Finder folder panel.
+
+## Continuous integration (GitHub Actions, `.github/workflows/ci.yml`)
+
+- Linux (ubuntu-latest, Python 3.11 and 3.13, system FFmpeg): ruff, the 79 unit
+  tests, the bundle.json consistency check and the four CPU end-to-end suites.
+- Windows (windows-latest, Python 3.13): `fetch_binaries.py` restores the exact
+  embedded Python 3.13.15 and FFmpeg 9.0.1 (every file matches bundle.json), then
+  the 79 unit tests run against the packaged FFmpeg — **79/79 pass**. This was the
+  first run of the suite on Windows; it exposed one POSIX-only assumption in
+  `test_portable` (reading a byte while a mandatory Windows lock is held), fixed
+  in the test. The Windows Job Object CPU cap, the native launcher and the Setup
+  are still not exercised by CI.
+- macOS (macos-latest, Apple Silicon, Python 3.13): the packaged arm64 FFmpeg,
+  the 79 unit tests, and `e2e_macos.py` (VideoToolbox) as a non-blocking step,
+  which has passed on hosted runners so far.
 
 ## Commands
 
