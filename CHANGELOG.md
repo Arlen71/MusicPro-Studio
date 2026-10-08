@@ -4,7 +4,10 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versiya raqami
 `app/runtime_support.py` dagi `VERSION` va `pyproject.toml` da bir xil bo‘lishi
 kerak; `bundle.json` har bir paketning fayl-hash qulf-fayli.
 
-## [Unreleased]
+## [1.8.1] — 2026-10-08
+
+macOS (Apple Silicon) qo‘llab-quvvatlash, loyiha vositalari, CI va dvigatel tuzatishi.
+Tayyor paketlar: https://github.com/Arlen71/MusicPro-Studio/releases/tag/v1.8.1
 
 ### Qo‘shildi — macOS (Apple Silicon)
 - `MusicPro.command` va `TEKSHIRISH.command` — Finder’dan ikki marta bosiladigan

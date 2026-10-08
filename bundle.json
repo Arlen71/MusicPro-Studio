@@ -1,6 +1,6 @@
 {
   "product": "MusicPro Studio",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "platform": "windows-amd64 + macos-arm64",
   "launcher": "1.5.0 (unchanged) · macOS: MusicPro.command",
   "python": "3.13.15 embedded (Windows) · 3.11+ system (macOS)",
@@ -13,8 +13,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 5777,
-      "sha256": "45330fa156108f0ff394704d8f84ce33c58a3cbb663c1586d2de88ab62d92ffa"
+      "size": 5957,
+      "sha256": "48d72a8e6f584c6291c29990458dd5ea988f201f767fb77dfaf6edbc5b79da4e"
     },
     {
       "path": "MusicPro.command",
@@ -159,7 +159,7 @@
     {
       "path": "app/runtime_support.py",
       "size": 3163,
-      "sha256": "4eff35943fe8a9bbe7519c22ed02072e285e52080997640dba4ed74a6f74ddfd"
+      "sha256": "5dcd760fb61b5447e6732a0d166e55dd6a8570ca2d92181acf6ae42d4dd639c2"
     },
     {
       "path": "app/tests/test_engine.py",
@@ -244,12 +244,12 @@
     {
       "path": "developer/build_manifest.py",
       "size": 3767,
-      "sha256": "4a5696ce6e0133d22234f4f498560fcdcb54fb0b91164bdd2c7619495f945a9f"
+      "sha256": "0fbaf911d8616854d906c44da531f7e93f3d52d2512543b369673ddf6a7e5cdc"
     },
     {
       "path": "developer/build_release.py",
-      "size": 5886,
-      "sha256": "95b6d58306125c8b79bb3d4642723fa235f0edd15d1e7c7d7eeaa5436730504a"
+      "size": 5894,
+      "sha256": "255e785406acc61e003a614f50c71abaa97b7eca683ff6d47f0d4eb1b862e0b2"
     },
     {
       "path": "developer/e2e_macos.py",
@@ -259,7 +259,7 @@
     {
       "path": "developer/e2e_per_video.py",
       "size": 6252,
-      "sha256": "4392b5bb68d25d448d120cd9be19700ea055c64aae51b2abe7c3726c40513a2a"
+      "sha256": "fce872290df670a69e54b8d438bb95ee859d20d5402bd8446d51e48711d96989"
     },
     {
       "path": "developer/e2e_playlist.py",
@@ -269,7 +269,7 @@
     {
       "path": "developer/e2e_portable.py",
       "size": 4495,
-      "sha256": "9e0ff511e04101b856579c069841675b4f469c69f39005acf3b36c56a2fd154f"
+      "sha256": "ff5a31c630c863fd4cd2f5026468d54fbe13db3485862d90bbf47b9c13448b30"
     },
     {
       "path": "developer/e2e_recovery.py",
@@ -300,6 +300,11 @@
       "path": "developer/musicpro.ico",
       "size": 18857,
       "sha256": "3d12a335e68154990fea4cbd7bb449114ca63dfa2b584de9c79cf1799d27baa2"
+    },
+    {
+      "path": "developer/package_release.py",
+      "size": 4472,
+      "sha256": "571bcb1ec3f4710738ef05e6ec9559d22014b359c29930b27d46a1dc6964bb79"
     },
     {
       "path": "developer/setup.nsi",

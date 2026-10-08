@@ -5,7 +5,7 @@
 
 [project]
 name = "musicpro-studio"
-version = "1.8.0"
+version = "1.8.1"
 description = "Offline batch video montage: clips, licensed excerpts and music into finished videos with Playlist TXT and Excel license reports."
 requires-python = ">=3.11"
 dependencies = []

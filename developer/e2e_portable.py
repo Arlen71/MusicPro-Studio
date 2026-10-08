@@ -20,7 +20,7 @@ with tempfile.TemporaryDirectory(prefix='MusicPro E2E Ўзбек ') as temp:
     try:
         address=p.stdout.readline().strip().split('MusicPro: ')[1]
         def get(path): return json.load(urllib.request.urlopen(address+'/api/'+path,timeout=10))
-        init=get('init'); assert init['version']=='1.8.0'
+        init=get('init'); assert init['version']=='1.8.1'
         token=init['token']
         def post(path,body=None,key=None):
             req=urllib.request.Request(address+'/api/'+path,data=json.dumps(body or {}).encode(),headers={'Content-Type':'application/json','X-MusicPro-Token':token if key is None else key})

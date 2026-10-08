@@ -6,7 +6,7 @@ import re
 import sys
 from pathlib import Path
 
-VERSION = '1.8.0'
+VERSION = '1.8.1'
 
 
 def console_python() -> str:

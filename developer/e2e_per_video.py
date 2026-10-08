@@ -45,7 +45,7 @@ with tempfile.TemporaryDirectory(prefix='MusicPro 1.8 Per Video Ўзбек ') as
     proc,address=launch()
     try:
         def get(path):return json.load(urllib.request.urlopen(address+'/api/'+path,timeout=10))
-        token=get('init')['token'];assert get('init')['version']=='1.8.0'
+        token=get('init')['token'];assert get('init')['version']=='1.8.1'
         def post(path,body=None):
             request=urllib.request.Request(address+'/api/'+path,data=json.dumps(body or {}).encode(),
                     headers={'Content-Type':'application/json','X-MusicPro-Token':token})

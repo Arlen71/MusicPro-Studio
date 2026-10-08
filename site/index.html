@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>MusicPro Studio — yuklab olish</title>
+<meta name="description" content="Oflayn ommaviy video-montaj: bo‘laklar, litsen parchalari va musiqadan tayyor videolar, Playlist.txt va Excel hisobotlari bilan. macOS va Windows uchun bepul yuklab olish.">
+<meta property="og:title" content="MusicPro Studio 1.8.1">
+<meta property="og:description" content="Har bir trek — yangi montaj. macOS (Apple Silicon) va Windows uchun.">
+<meta property="og:image" content="/assets/ui.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%239ee9bd'/%3E%3Cpath d='M9 22V10l7 7 7-7v12' fill='none' stroke='%230d2c20' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#0a0e14;--panel:#121923;--field:#0e141d;--border:#283342;--line:#202b39;--text:#edf2f7;--muted:#a2afc0;--subtle:#7e8fa5;--accent:#9ee9bd;--accentbg:#1b342b;--accentink:#0d2c20;--radius:14px}
+@media (prefers-color-scheme:light){:root{--bg:#eef2f5;--panel:#fff;--field:#f7f9fb;--border:#cdd6df;--line:#e1e6ed;--text:#142438;--muted:#506278;--subtle:#607288;--accent:#226e4e;--accentbg:#e7f2ea;--accentink:#fff}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:20px;color:var(--text);text-decoration:none}
+.brand i{width:38px;height:38px;border-radius:10px;background:var(--accent);display:grid;place-items:center}
+.brand small{display:block;font-size:10px;letter-spacing:.22em;color:var(--subtle);font-weight:600;margin-top:-3px}
+nav a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:15px}
+nav a:hover{color:var(--text)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:56px 0 40px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--accent)}
+.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:clamp(36px,5.4vw,60px);line-height:1.06;margin:14px 0 18px;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);font-size:18px;max-width:34em;margin:0 0 30px}
+.dl{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:650;border:1px solid var(--border);background:var(--panel);color:var(--text);transition:transform .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px);border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accentink);border-color:var(--accent)}
+.btn small{display:block;font-weight:500;font-size:12px;opacity:.75}
+.btn svg{width:22px;height:22px;flex:none}
+.meta{margin-top:16px;color:var(--subtle);font-size:13px}
+.shot{border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:0 30px 80px #0006;background:var(--panel)}
+.shot img{display:block;width:100%;height:auto}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:30px;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 30px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.card h3{margin:10px 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.ico{width:38px;height:38px;border-radius:10px;background:var(--accentbg);color:var(--accent);display:grid;place-items:center;font-size:19px}
+.frames{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.frames figure{margin:0}
+.frames img{width:100%;border-radius:12px;border:1px solid var(--border);display:block}
+.frames figcaption{color:var(--subtle);font-size:13px;margin-top:8px}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.steps ol{margin:12px 0 0;padding-left:20px;color:var(--muted)}
+.steps li{margin:6px 0}
+.steps li b{color:var(--text)}
+code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--field);border:1px solid var(--line);padding:2px 6px;border-radius:6px;color:var(--text);word-break:break-all}
+pre{background:var(--field);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;margin:12px 0 0}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:6px;background:var(--accentbg);color:var(--accent)}
+.sums{font:12px/1.7 ui-monospace,Menlo,monospace;color:var(--subtle);word-break:break-all}
+footer{padding:36px 0 50px;color:var(--subtle);font-size:14px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:28px;gap:32px}.grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}nav a:not(.gh){display:none}}
+@media (max-width:520px){.frames{grid-template-columns:1fr}.btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="#"><i><svg viewBox="0 0 32 32" width="22" height="22"><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="var(--accentink)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>MusicPro<small>VIDEO STUDIO</small></span></a>
+  <nav><a href="#imkoniyatlar">Imkoniyatlar</a><a href="#ornatish">O‘rnatish</a><a class="gh" href="https://github.com/Arlen71/MusicPro-Studio">GitHub</a></nav>
+</header>
+
+<div class="hero">
+  <div>
+    <span class="eyebrow">G‘OYADAN NATIJAGACHA · 1.8.1</span>
+    <h1>Har bir trek.<br><em>Yangi montaj.</em></h1>
+    <p class="lead">Bo‘laklar, litsenziyalangan videolar va musiqalardan bir bosishda o‘nlab tayyor videolar. Musiqa urg‘ulariga mos kesish, effektlar, playlist, Excel litsen hisobotlari — hammasi kompyuteringizda, internetsiz.</p>
+    <div class="dl" id="downloads">
+      <a class="btn" data-os="mac" href="https://github.com/Arlen71/MusicPro-Studio/releases/download/v1.8.1/MusicPro_Studio_1.8.1_macOS.zip">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.8zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>
+        <span>macOS uchun yuklab olish<small>Apple Silicon · ZIP · 43 MB</small></span></a>
+      <a class="btn" data-os="win" href="https://github.com/Arlen71/MusicPro-Studio/releases/download/v1.8.1/MusicPro_Studio_1.8.1_Windows.zip">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.5v7H3zm0 13 7.4 1v-7H3zm8.4 1.2L21 21v-8.5h-9.6zm0-15.4v7.2H21V3z"/></svg>
+        <span>Windows uchun yuklab olish<small>Windows 10/11 x64 · ZIP · 83 MB</small></span></a>
+    </div>
+    <p class="meta">Bepul · Ochiq manba: <a href="https://github.com/Arlen71/MusicPro-Studio">github.com/Arlen71/MusicPro-Studio</a> · <a href="https://github.com/Arlen71/MusicPro-Studio/releases">barcha versiyalar</a></p>
+  </div>
+  <div class="shot"><img src="/assets/ui.jpg" width="1160" height="700" alt="MusicPro Studio interfeysi: playlist rejimi, CPU + GPU navbat va resurs sozlamalari"></div>
+</div>
+
+<section id="imkoniyatlar">
+  <h2>Nima qila oladi</h2>
+  <p class="sub">Bir marta sozlang — dastur qolganini o‘zi bajaradi.</p>
+  <div class="grid">
+    <div class="card"><div class="ico">♫</div><h3>Musiqaga mos montaj</h3><p>Kuchli urg‘ular aniqlanadi, kadrlar zarbada almashadi. Video davomiyligi musiqa bilan kadrgacha aniq.</p></div>
+    <div class="card"><div class="ico">☰</div><h3>Har video uchun playlist</h3><p>Top 5, Top 10 — har bir natijaviy videoga o‘z tartibi. Bo‘sh o‘rinlar avtomatik random to‘ldiriladi.</p></div>
+    <div class="card"><div class="ico">⧉</div><h3>Litsen parchalari</h3><p>5–7 soniyalik litsen parchalari qoidaga muvofiq joylashadi, effektsiz va kesilmagan holda.</p></div>
+    <div class="card"><div class="ico">✦</div><h3>6 xil edit effekti</h3><p>Zoom, shake, vibratsiya, whip, RGB, blur — faqat kuchli urg‘ularda, litsen chegarasidan tashqarida.</p></div>
+    <div class="card"><div class="ico">⚡</div><h3>CPU + GPU navbat</h3><p>Mac’da Apple media engine (VideoToolbox), Windows’da NVIDIA/Intel/AMD. Ikkalasi bir vaqtda ishlaydi.</p></div>
+    <div class="card"><div class="ico">▤</div><h3>Excel va Playlist.txt</h3><p>Har bir video bilan litsenziyalash hisoboti va vaqtlar ko‘rsatilgan Playlist.txt tayyor bo‘ladi.</p></div>
+  </div>
+  <div class="frames">
+    <figure><img src="/assets/frame-clip.jpg" width="800" height="450" alt="Natijaviy videodan kadr: oddiy bo‘lak" loading="lazy"><figcaption>Natijaviy videodan kadr — oddiy bo‘lak</figcaption></figure>
+    <figure><img src="/assets/frame-license.jpg" width="800" height="450" alt="Natijaviy videodan kadr: litsen parchasi" loading="lazy"><figcaption>Xuddi shu videoda litsen parchasi</figcaption></figure>
+  </div>
+</section>
+
+<section id="ornatish">
+  <h2>O‘rnatish</h2>
+  <p class="sub">O‘rnatuvchi yo‘q — ZIPni oching va ishga tushiring. Butun papka kerak, faqat bitta fayl emas.</p>
+  <div class="steps">
+    <div class="card"><span class="tag">macOS · Apple Silicon</span>
+      <ol>
+        <li><b>Python 3.11+</b> kerak: <a href="https://www.python.org/downloads/macos/">python.org</a> dan o‘rnating.</li>
+        <li>ZIPni oching va papkani <code>~/Projects</code> ga qo‘ying (iCloud sinxronlanadigan Desktop’ga emas).</li>
+        <li><b>MusicPro.command</b> ustida o‘ng tugma → <b>Ochish</b> (faqat birinchi safar).</li>
+        <li>Dastur brauzerda ochiladi. Yopish — ichidagi “Chiqish” tugmasi.</li>
+      </ol></div>
+    <div class="card"><span class="tag">Windows 10/11 · x64</span>
+      <ol>
+        <li>ZIPni to‘liq oching (Python va FFmpeg ichida).</li>
+        <li><b>MusicPro.exe</b> ni ishga tushiring.</li>
+        <li>SmartScreen chiqsa: <b>Batafsil</b> → <b>Baribir ishga tushirish</b>.</li>
+        <li>Tekshiruv uchun <b>TEKSHIRISH.bat</b>.</li>
+      </ol></div>
+  </div>
+  <div class="card" style="margin-top:16px"><span class="tag">Dasturchilar uchun</span>
+    <pre>git clone https://github.com/Arlen71/MusicPro-Studio.git
+cd MusicPro-Studio
+python3 developer/fetch_binaries.py   # FFmpeg va runtime, SHA-256 bilan
+./MusicPro.command                    # yoki: make test · make e2e</pre>
+    <p class="sums" style="margin-top:14px">SHA-256<br>e82a37c9818047bfb391788eb0ee1ccb2b26038aed7c4ecfd719f7d90a62c220 &nbsp;macOS.zip<br>3f13be52fa0b12aa0ff5561d6e23538b61cbe8b1852ca8f16f9f48f000d9da9e &nbsp;Windows.zip</p>
+  </div>
+</section>
+</div>
+
+<footer><div class="wrap">
+  <span>MusicPro Studio 1.8.1 · Ma’lumotlaringiz kompyuteringizdan chiqmaydi.</span>
+  <span>FFmpeg — GPL v3 (<a href="https://github.com/Arlen71/MusicPro-Studio/blob/main/THIRD_PARTY.md">THIRD_PARTY.md</a>) · <a href="https://github.com/Arlen71/MusicPro-Studio">GitHub</a></span>
+</div></footer>
+
+<script>
+// Put the visitor's own platform first and make it the primary button.
+(function(){var ua=navigator.userAgent||'',os=/Win/i.test(ua)?'win':/Mac/i.test(ua)?'mac':null;if(!os)return;
+var box=document.getElementById('downloads'),b=box.querySelector('[data-os="'+os+'"]');b.classList.add('primary');box.prepend(b)})();
+</script>
+</body>
+</html>

@@ -21,7 +21,7 @@ IGNORED_SUFFIXES = {'.pyc', '.pdb'}
 
 METADATA = {
     'product': 'MusicPro Studio',
-    'version': '1.8.0',
+    'version': '1.8.1',
     'platform': 'windows-amd64 + macos-arm64',
     'launcher': '1.5.0 (unchanged) · macOS: MusicPro.command',
     'python': '3.13.15 embedded (Windows) · 3.11+ system (macOS)',
