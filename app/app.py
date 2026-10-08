@@ -364,7 +364,9 @@ def main():
         print('MusicPro is already running.',flush=True)
         return
     server=None
-    for port in range(8765,8785):
+    # The online gateway runs one isolated instance per account on a port it assigns.
+    ports=[int(os.environ['MUSICPRO_PORT'])] if os.environ.get('MUSICPRO_PORT') else range(8765,8785)
+    for port in ports:
         try: server=ThreadingHTTPServer(('127.0.0.1',port),Handler); break
         except OSError: pass
     if server is None:

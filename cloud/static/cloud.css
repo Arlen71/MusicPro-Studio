@@ -1,0 +1,27 @@
+/* Online studio additions; colours come from the page's own variables. */
+.cloud-hidden{display:none!important}
+.cloud-user{font-size:11px;color:var(--subtle);margin-right:4px;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cloud-quota{display:flex;align-items:center;gap:12px;margin:2px 0 16px;font-size:10px;color:var(--subtle)}
+.cloud-quota-bar{flex:0 0 140px;height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.cloud-quota-bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.cloud-quota.full .cloud-quota-bar i{background:#e17055}
+.cloud-files{border:1px dashed var(--border);border-radius:9px;padding:10px 12px;margin-top:6px;transition:border-color .15s,background .15s}
+.cloud-files.drag{border-color:var(--accent);background:var(--accentbg)}
+.cloud-files-head{display:flex;align-items:center;gap:10px}
+.cloud-count{flex:1;font-size:11px;color:var(--muted)}
+.cloud-add{padding:7px 11px}
+.cloud-list{list-style:none;margin:8px 0 0;padding:0;max-height:168px;overflow:auto}
+.cloud-list li{display:flex;align-items:center;gap:10px;padding:5px 2px;border-top:1px solid var(--line);font-size:11px}
+.cloud-list li:first-child{border-top:0}
+.cloud-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
+.cloud-list small{color:var(--subtle);white-space:nowrap}
+.cloud-del{border:0;background:none;color:var(--subtle);font-size:16px;line-height:1;padding:2px 6px;border-radius:5px;cursor:pointer}
+.cloud-del:hover{color:#e17055;background:var(--line)}
+.cloud-progress{margin-top:8px;font-size:10px;color:var(--muted);padding:6px 8px;border-radius:6px;background:linear-gradient(90deg,var(--accentbg) var(--p,0%),transparent var(--p,0%));border:1px solid var(--line);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.cloud-output .field-note{margin:0}
+.cloud-links{display:flex;gap:6px;flex-wrap:wrap}
+.cloud-links a{font-size:10px;padding:3px 8px;border-radius:6px;border:1px solid var(--border);color:var(--accent);text-decoration:none;white-space:nowrap}
+.cloud-links a:hover{border-color:var(--accent)}
+.cloud-empty{color:var(--subtle)}
+#download-video{margin-left:8px}
+@media (max-width:640px){.cloud-quota{flex-wrap:wrap}.cloud-quota-bar{flex-basis:100%}.cloud-result{flex-wrap:wrap}}

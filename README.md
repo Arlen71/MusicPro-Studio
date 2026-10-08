@@ -2,9 +2,10 @@
 
 [![CI](https://github.com/Arlen71/MusicPro-Studio/actions/workflows/ci.yml/badge.svg)](https://github.com/Arlen71/MusicPro-Studio/actions/workflows/ci.yml)
 
-**Yuklab olish:** https://musicpro-site-production.up.railway.app ·
-[GitHub Releases](https://github.com/Arlen71/MusicPro-Studio/releases/latest) —
-macOS (Apple Silicon) va Windows uchun tayyor ZIP, FFmpeg ichida.
+**Onlayn studiya:** https://musicpro-site-production.up.railway.app — ro‘yxatdan
+o‘ting va brauzerning o‘zida ishlang, o‘rnatish shart emas.
+Desktop versiya: [GitHub Releases](https://github.com/Arlen71/MusicPro-Studio/releases/latest)
+(macOS Apple Silicon va Windows, FFmpeg ichida).
 
 Oflayn ommaviy video-montaj dasturi. Bo‘laklar papkasi, litsenziyalangan
 videolar va musiqalardan tayyor videolar yasaydi: har bir video o‘z musiqasi
@@ -64,6 +65,28 @@ app/app.py ─────── loopback HTTP server (8765–8784) + token, ses
 Ma’lumotlar (`session.json`, jurnallar) portable rejimda paket ichidagi `data/`
 papkasida; Windows Setup bilan o‘rnatilganda `%LOCALAPPDATA%\MusicProStudio`,
 macOS’da `~/Library/Application Support/MusicProStudio`.
+
+## Onlayn studiya (`cloud/`)
+
+`cloud/gateway.py` — yagona ochiq server (faqat standart kutubxona). U:
+
+- hisoblarni yuritadi (email + parol, scrypt, HttpOnly sessiya cookie, kirish va
+  ro‘yxatdan o‘tish uchun IP bo‘yicha limit);
+- har bir hisob uchun **o‘zgartirilmagan** `app/app.py` nusxasini alohida
+  papka va portda ishga tushiradi, faol bo‘lmasa to‘xtatadi;
+- studiya API’sini shu nusxaga proksi qiladi va papka nomlaydigan har bir
+  so‘rovni (`/api/plan`, `/api/music-list`) hisobning o‘z papkalariga qayta
+  yozadi — boshqa hisob yoki server fayllariga yo‘l yo‘q;
+- fayl yuklash/o‘chirish (`/files/...`), natijalarni yuklab olish (Range bilan),
+  disk kvotasi, umumiy disk zaxirasi va bir vaqtdagi renderlar sonini cheklaydi.
+
+`cloud/static/cloud.js` desktop interfeysini onlayn rejimga moslaydi (papka
+maydonlari o‘rniga yuklash, natijalar ro‘yxati, chiqish); `studio.js` o‘zgarmaydi.
+Sozlamalar muhit o‘zgaruvchilari orqali: `DATA_DIR`, `USER_QUOTA_GB`,
+`MAX_VIDEOS`, `MAX_ACTIVE_RENDERS`, `MAX_FILE_MB`, `DISK_RESERVE_MB`,
+`IDLE_MINUTES`, `ALLOW_SIGNUP`, `SIGNUP_PER_HOUR`, `LOGIN_PER_10MIN`,
+`MUSICPRO_CPUS`, `MUSICPRO_MEMORY_GB`. Mahalliy ishga tushirish:
+`python3 cloud/gateway.py` (http://localhost:8080). Sinov: `developer/e2e_cloud.py`.
 
 ## Papka tuzilmasi
 

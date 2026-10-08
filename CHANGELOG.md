@@ -4,6 +4,21 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versiya raqami
 `app/runtime_support.py` dagi `VERSION` va `pyproject.toml` da bir xil bo‘lishi
 kerak; `bundle.json` har bir paketning fayl-hash qulf-fayli.
 
+## [Unreleased]
+
+### Qo‘shildi — onlayn studiya
+- `cloud/gateway.py`: ro‘yxatdan o‘tish va kirish, har bir hisob uchun alohida
+  izolyatsiyalangan studiya jarayoni, fayl yuklash va natijalarni yuklab olish,
+  disk kvotasi, umumiy disk zaxirasi, bir vaqtdagi renderlar limiti.
+- `cloud/static/`: bosh sahifa, kirish sahifasi, interfeysni onlayn rejimga
+  moslovchi `cloud.js`/`cloud.css`. Railway’da: https://musicpro-site-production.up.railway.app
+- `Dockerfile` (Debian FFmpeg, imtiyozsiz foydalanuvchi), `developer/e2e_cloud.py`.
+- `app/app.py`: `MUSICPRO_PORT`; `app/resources.py`: `MUSICPRO_CPUS`,
+  `MUSICPRO_MEMORY_GB` — konteyner chegaralari uchun. Desktop xatti-harakati o‘zgarmagan.
+
+### O‘chirildi
+- `site/` yuklab olish sahifasi — uning o‘rnini onlayn studiya egalladi.
+
 ## [1.8.1] — 2026-10-08
 
 macOS (Apple Silicon) qo‘llab-quvvatlash, loyiha vositalari, CI va dvigatel tuzatishi.

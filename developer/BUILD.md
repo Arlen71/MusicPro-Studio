@@ -137,9 +137,14 @@ git tag -a vX.Y.Z -m "MusicPro Studio X.Y.Z" && git push --tags
 gh release create vX.Y.Z dist/*.zip dist/SHA256SUMS.txt --title "MusicPro Studio X.Y.Z"
 ```
 
-`site/` is the static download page, deployed on Railway (project
-`musicpro-studio`, service `musicpro-site`,
-https://musicpro-site-production.up.railway.app). After a new release update the
-version, asset names, sizes and SHA-256 in `site/index.html`, then from `site/`:
-`railway up --service musicpro-site --detach`. The page is plain HTML served by
-`site/server.py` (stdlib only) from `site/Dockerfile`.
+## Online studio on Railway
+
+The root `Dockerfile` builds `cloud/gateway.py` with Debian's FFmpeg; it runs as
+an unprivileged user and keeps accounts and every account's files on the
+volume mounted at `/data`. Railway project `musicpro-studio`, service
+`musicpro-site`, https://musicpro-site-production.up.railway.app. Redeploy from
+the repository root with `railway up --service musicpro-site --detach`.
+Limits are service variables (see README, "Onlayn studiya"); the volume is
+5 GB, so `USER_QUOTA_GB=1` and `DISK_RESERVE_MB` protect it. To close sign-ups,
+set `ALLOW_SIGNUP=0`. Verify changes with `python3 developer/e2e_cloud.py`
+(real renders, two accounts, isolation and traversal checks); CI runs it on Linux.

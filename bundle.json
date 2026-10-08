@@ -13,8 +13,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 5957,
-      "sha256": "48d72a8e6f584c6291c29990458dd5ea988f201f767fb77dfaf6edbc5b79da4e"
+      "size": 6759,
+      "sha256": "9d2884ef1c8cdab0d4a3f50c34a7aa32ef1c80dcef419b9728f8be18e58c774a"
     },
     {
       "path": "MusicPro.command",
@@ -28,8 +28,8 @@
     },
     {
       "path": "README.md",
-      "size": 6806,
-      "sha256": "d1e7a2ae962fa6a0469b7bd3f14b4a029c0c9e51f59cd087753610bf99e14208"
+      "size": 8176,
+      "sha256": "92489b99646390094ba23dd8ee43b23e31a2d3258039e6f01fbaee3de2f6cde8"
     },
     {
       "path": "README.txt",
@@ -68,8 +68,8 @@
     },
     {
       "path": "app/app.py",
-      "size": 22624,
-      "sha256": "acea8e07ff899d0dd13afaab73f2ad1a8e83399f0287c905fca4184dcbfc94da"
+      "size": 22801,
+      "sha256": "4bb61b70af9a9d74e349573414e2ad65cb548976e9866a5c2522893059c2ae58"
     },
     {
       "path": "app/assets/report_template.xlsx",
@@ -153,8 +153,8 @@
     },
     {
       "path": "app/resources.py",
-      "size": 8465,
-      "sha256": "a7e941a6fd7e4eea426852652bc730de35629b4584dbd691479163854720e2dd"
+      "size": 8683,
+      "sha256": "ce8adb64e2e134390da72d6220f1760a1b60f7c8aa3e512f2bf9c79257b5952f"
     },
     {
       "path": "app/runtime_support.py",
@@ -238,8 +238,8 @@
     },
     {
       "path": "developer/BUILD.md",
-      "size": 6692,
-      "sha256": "3c987c79537ef46e89e3fb143cc83510c381a9b00103d5d29242ba10ce4af90c"
+      "size": 7003,
+      "sha256": "c11f1a4df5e6ff3c8f8c4f94417ccfce519a37afd8f410471c223f62f1732c44"
     },
     {
       "path": "developer/build_manifest.py",
@@ -248,8 +248,13 @@
     },
     {
       "path": "developer/build_release.py",
-      "size": 5894,
-      "sha256": "255e785406acc61e003a614f50c71abaa97b7eca683ff6d47f0d4eb1b862e0b2"
+      "size": 5977,
+      "sha256": "704f941ec7f40adf560e831779be41d026906188ad7e25790ebfdade7d5f5054"
+    },
+    {
+      "path": "developer/e2e_cloud.py",
+      "size": 13038,
+      "sha256": "f24c616bdfad36ba888ee0a532310e10f2571af958b277565bdc6c0425aa8d05"
     },
     {
       "path": "developer/e2e_macos.py",

@@ -33,3 +33,6 @@ developer/install_files.nsh
 developer/uninstall_files.nsh
 developer/launcher.res
 dist/
+
+# Local data of the online studio (cloud/gateway.py without DATA_DIR).
+cloud-data/

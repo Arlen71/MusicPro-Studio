@@ -13,7 +13,8 @@ EXCLUDE = {'data', '__pycache__', '.git', 'installed.flag', 'Uninstall.exe',
            'bundle.json', 'install_files.nsh', 'uninstall_files.nsh', 'launcher.res',
            # Repository and developer tooling; end users never need these.
            '.github', '.gitignore', '.gitattributes', '.editorconfig', 'pyproject.toml', 'Makefile',
-           '.ruff_cache', '.pytest_cache', '.venv', '.cache', 'dist', 'site'}
+           '.ruff_cache', '.pytest_cache', '.venv', '.cache', 'dist', 'site', 'cloud', 'cloud-data',
+           'Dockerfile', '.dockerignore', '.railwayignore'}
 
 
 def portable_files(bundle: Path):

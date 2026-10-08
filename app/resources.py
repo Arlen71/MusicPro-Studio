@@ -33,6 +33,9 @@ def macos_available_gb():
 
 
 def available_memory_gb():
+    # A container sees the host's memory, not its own limit; the server states it.
+    if os.environ.get('MUSICPRO_MEMORY_GB'):
+        return float(os.environ['MUSICPRO_MEMORY_GB'])
     try:
         if sys.platform == 'darwin':
             return macos_available_gb()
@@ -52,7 +55,7 @@ def available_memory_gb():
 def render_budget(config, devices, cores=None, memory_gb=None):
     """Total concurrent segments are bounded across CPU and GPU lanes."""
     profile = config.get('resources', 'auto')
-    cores = max(1, int(cores or os.cpu_count() or 4))
+    cores = max(1, int(cores or os.environ.get('MUSICPRO_CPUS') or os.cpu_count() or 4))
     memory_gb = available_memory_gb() if memory_gb is None else memory_gb
     devices = sorted(set(devices))
     # Includes decode, filter, encoder and frame queues, with headroom for the OS.

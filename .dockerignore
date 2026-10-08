@@ -1,0 +1,7 @@
+*
+!app/
+!cloud/
+app/bin/
+app/tests/
+**/__pycache__/
+**/.DS_Store
