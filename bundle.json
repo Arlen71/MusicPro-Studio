@@ -28,8 +28,8 @@
     },
     {
       "path": "README.md",
-      "size": 6588,
-      "sha256": "ea9907bcf9a7e05ca8df323b1102a978ea437592ee6183a28d6e48d9625cc0d0"
+      "size": 6806,
+      "sha256": "d1e7a2ae962fa6a0469b7bd3f14b4a029c0c9e51f59cd087753610bf99e14208"
     },
     {
       "path": "README.txt",
@@ -238,8 +238,8 @@
     },
     {
       "path": "developer/BUILD.md",
-      "size": 5901,
-      "sha256": "452e4954c9fe58b79917b151113fff7ad332e5a806fec7ae714762357754bdac"
+      "size": 6692,
+      "sha256": "3c987c79537ef46e89e3fb143cc83510c381a9b00103d5d29242ba10ce4af90c"
     },
     {
       "path": "developer/build_manifest.py",

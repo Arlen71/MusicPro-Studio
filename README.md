@@ -2,6 +2,10 @@
 
 [![CI](https://github.com/Arlen71/MusicPro-Studio/actions/workflows/ci.yml/badge.svg)](https://github.com/Arlen71/MusicPro-Studio/actions/workflows/ci.yml)
 
+**Yuklab olish:** https://musicpro-site-production.up.railway.app ·
+[GitHub Releases](https://github.com/Arlen71/MusicPro-Studio/releases/latest) —
+macOS (Apple Silicon) va Windows uchun tayyor ZIP, FFmpeg ichida.
+
 Oflayn ommaviy video-montaj dasturi. Bo‘laklar papkasi, litsenziyalangan
 videolar va musiqalardan tayyor videolar yasaydi: har bir video o‘z musiqasi
 (yoki playlisti) uzunligida, litsen parchalari qoidaga muvofiq joylashtirilgan,

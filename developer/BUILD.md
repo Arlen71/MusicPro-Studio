@@ -127,3 +127,19 @@ python3 developer/e2e_macos.py
 It renders real videos through VideoToolbox and through a shared CPU+GPU queue,
 and checks the Finder picker helper, the Application Support data directory and
 the memory reading. Intel Macs are not covered: the bundled binaries are arm64.
+
+## Releasing downloads and the download page
+
+```
+python3 developer/fetch_binaries.py        # every binary present and verified
+python3 developer/package_release.py       # dist/…_macOS.zip, …_Windows.zip, SHA256SUMS.txt
+git tag -a vX.Y.Z -m "MusicPro Studio X.Y.Z" && git push --tags
+gh release create vX.Y.Z dist/*.zip dist/SHA256SUMS.txt --title "MusicPro Studio X.Y.Z"
+```
+
+`site/` is the static download page, deployed on Railway (project
+`musicpro-studio`, service `musicpro-site`,
+https://musicpro-site-production.up.railway.app). After a new release update the
+version, asset names, sizes and SHA-256 in `site/index.html`, then from `site/`:
+`railway up --service musicpro-site --detach`. The page is plain HTML served by
+`site/server.py` (stdlib only) from `site/Dockerfile`.
