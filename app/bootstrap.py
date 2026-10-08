@@ -56,7 +56,12 @@ def run() -> int:
             required += ['bin/ffmpeg', 'bin/ffprobe', 'folder_dialog.py']
         missing = [name for name in required if not (ROOT/name).is_file()]
         if missing:
-            raise RuntimeError('Paket to‘liq emas: ' + ', '.join(missing) + '\nZIPni to‘liq oching yoki Setupni qayta ishga tushiring.')
+            hint = '\nZIPni to‘liq oching yoki Setupni qayta ishga tushiring.'
+            if (ROOT.parent/'developer'/'fetch_binaries.py').is_file():
+                # A git checkout: tracked files come back from git, binaries from the verified sources.
+                hint = ('\nTiklash (MusicPro papkasida, Terminalda):\n'
+                        '  git restore .\n  python3 developer/fetch_binaries.py')
+            raise RuntimeError('Paket to‘liq emas: ' + ', '.join(missing) + hint)
         if '--check' in sys.argv:
             from portable_check import check
             report = check()

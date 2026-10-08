@@ -13,8 +13,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 5347,
-      "sha256": "d9c8eda8977b0911af0b34287534f27b7b6789922da66a8fbe9de74b20ea845f"
+      "size": 5777,
+      "sha256": "45330fa156108f0ff394704d8f84ce33c58a3cbb663c1586d2de88ab62d92ffa"
     },
     {
       "path": "MusicPro.command",
@@ -38,8 +38,8 @@
     },
     {
       "path": "README_MAC.txt",
-      "size": 3128,
-      "sha256": "ed804889c5cb950c9901ad28c05af465e6ec06e8af08373bfd185dc8262bd624"
+      "size": 3782,
+      "sha256": "1b3707a052e7905fa9c60f105bf73ca26663f1a1ec22f069e1f9af3ab4889d7e"
     },
     {
       "path": "START.bat",
@@ -58,8 +58,8 @@
     },
     {
       "path": "TEST_REPORT.md",
-      "size": 7747,
-      "sha256": "58dab339280e7e6d87aef59c3a66a03db5a5a83752ad274fe033fe03fe822d81"
+      "size": 8936,
+      "sha256": "4dc4a4fe22f47872945efba43cc7c575b78499eb19b1f2cdbfa1219fa6a41810"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -68,8 +68,8 @@
     },
     {
       "path": "app/app.py",
-      "size": 22600,
-      "sha256": "11a559b841b727810ed5318a1b073c83e01a342d211443c743513bb0d55a03f1"
+      "size": 22624,
+      "sha256": "acea8e07ff899d0dd13afaab73f2ad1a8e83399f0287c905fca4184dcbfc94da"
     },
     {
       "path": "app/assets/report_template.xlsx",
@@ -108,8 +108,8 @@
     },
     {
       "path": "app/bootstrap.py",
-      "size": 3645,
-      "sha256": "57f821e92b274ae53ad9b25af8d6b79c8fb46e8c24e9e7769fa7be0ce1d10db3"
+      "size": 3999,
+      "sha256": "f30f7690e464678de80f7a6d091cdb22b3b2580adfea74e67d73cd97ee171b4e"
     },
     {
       "path": "app/effects.py",
@@ -223,8 +223,8 @@
     },
     {
       "path": "app/web/studio.js",
-      "size": 24399,
-      "sha256": "504e94b795e108e222bc0d6cc5e313d75e2bab7cb376e4d4084e713ec60f6210"
+      "size": 24701,
+      "sha256": "0548c722ad5cea9cb5d5356327e1e73012b489e0c48000211bdbc1bced21bd1f"
     },
     {
       "path": "app/win_dialog.py",

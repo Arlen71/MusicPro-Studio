@@ -206,6 +206,8 @@ for(const a of document.querySelectorAll('nav a'))a.onclick=()=>{document.queryS
   $('package-note').textContent=platform.package;
   const gpu=form.elements.device.querySelector('option[value="gpu"]');
   if(gpu)gpu.textContent=platform.gpu_label;
+  // The HTML ships Windows examples (D:\Media\…); show this computer's style of path.
+  if(platform.folder_root)for(const k of ['clips','licenses','music','output']){const e=form.elements.namedItem(k);if(e&&e.placeholder)e.placeholder=e.placeholder.replace(/^[A-Z]:\\Media\\/,platform.folder_root)}
  }
  for(const[k,v]of Object.entries(d.config)){
   const field=form.elements.namedItem(k);if(!field)continue;

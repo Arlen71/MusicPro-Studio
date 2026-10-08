@@ -33,6 +33,14 @@ kerak; `bundle.json` har bir paketning fayl-hash qulf-fayli.
   aynan paketdagi binarlar bilan unit testlar. Windows paketi birinchi marta haqiqiy
   Windows’da avtomatik sinaladi.
 
+### O‘zgartirildi — macOS 27 dan keyin
+- `app/bootstrap.py`: git nusxasida fayllar yo‘q bo‘lsa, “ZIPni oching” o‘rniga
+  aniq tiklash buyruqlari (`git restore .`, `fetch_binaries.py`) ko‘rsatiladi.
+- Interfeys: macOS’da papka maydonlaridagi `D:\Media\…` namunalari `~/Movies/…`
+  ga almashadi.
+- `README_MAC.txt`: iCloud sinxronlanadigan papkalarda saqlamaslik va
+  yo‘qolgan fayllarni tiklash bo‘limi.
+
 ### Tuzatildi
 - **`app/engine.py`: sog‘lom manba noto‘g‘ri chiqarib tashlanardi.** Musiqaga mos
   (beat) rejimda bo‘lak ofseti `1e-4` s dan kichik chiqsa, `-ss` ga Python’ning

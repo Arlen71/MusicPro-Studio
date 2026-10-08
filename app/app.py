@@ -16,7 +16,7 @@ from playlist import REPORT_NAME as PLAYLIST_REPORT_NAME, text_from_plan as play
 DATA=data_directory(ROOT); DATA.mkdir(parents=True,exist_ok=True)
 TOKEN=secrets.token_urlsafe(32)
 # The page names the launcher and the encoder the person actually has.
-PLATFORM=(dict(os='macos',package='Mustaqil macOS paketi',launcher='MusicPro.command',
+PLATFORM=(dict(os='macos',package='Mustaqil macOS paketi',launcher='MusicPro.command',folder_root='~/Movies/',
                gpu_label='GPU · Apple media engine',
                gpu_note='Apple apparat kodlovchisi (VideoToolbox) amalda tekshiriladi. Alohida drayver kerak emas.')
           if sys.platform=='darwin' else

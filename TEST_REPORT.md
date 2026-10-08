@@ -72,6 +72,26 @@ Not executed on macOS: Intel (x86_64) Macs, since the bundled binaries are
 arm64-only; the Gatekeeper first-open flow for a quarantined download; and a
 real click inside the Finder folder panel.
 
+## macOS 27 re-verification (2026-10-08)
+
+Host upgraded to macOS 27.0.1 / Xcode 27. While the project sat in the
+iCloud-synced Desktop ("Desktop & Documents", Optimize Mac Storage on), 36
+files vanished — all third-party binaries, `MusicPro.exe`, `studio.html`,
+`BOSHLASH.html` and `licenses/ffmpeg/README.txt` — and the tree's permissions
+were rewritten to 600/700. Microsoft Defender (unlicensed, no threats) and the
+Trash were ruled out. The remaining 62 files matched bundle.json byte for byte.
+The project was moved to `~/Projects/MusicPro-Studio`, tracked files restored
+with `git restore`, binaries with `fetch_binaries.py` (all SHA-256 verified),
+and the manifest is 98/98 again.
+
+Then, on macOS 27: ruff clean, 80/80 unit tests, all five e2e suites, and
+TEKSHIRISH pass. A full run through the browser UI, launched by
+`MusicPro.command`: six clips, two licensed videos and three beat tracks;
+playlist mode (2 tracks per video), beat cuts, all effects, 1080p30, CPU+GPU.
+Both videos finished in about one minute with no issues — one encoded by
+libx264, one by h264_videotoolbox concurrently — at exactly 80.000 s and
+87.000 s, each with its Excel report and Playlist.txt.
+
 ## Continuous integration (GitHub Actions, `.github/workflows/ci.yml`)
 
 - Linux (ubuntu-latest, Python 3.11 and 3.13, system FFmpeg): ruff, the 79 unit

@@ -46,6 +46,21 @@ oqimlar soni, parallel segmentlar va past jarayon ustuvorligi boshqariladi.
 "Avtomatik" rejimda render past ustuvorlikda ishlaydi va Mac javob berishda
 davom etadi.
 
+iCLOUD — MUHIM
+
+MusicPro papkasini iCloud sinxronlanadigan joyda (Desktop, Documents yoki
+iCloud Drive) saqlamang, ayniqsa "Optimize Mac Storage" yoqilgan bo'lsa.
+iCloud katta binarlarni bulutga chiqarib yuborishi yoki papkani qayta yozib,
+fayllarni yo'qotishi mumkin — 2026-oktyabrda aynan shunday bo'lgan.
+Tavsiya etilgan joy: ~/Projects/MusicPro-Studio
+
+Fayllar yo'qolsa (dastur "Paket to'liq emas" desa), Terminalda:
+  cd ~/Projects/MusicPro-Studio
+  git restore .
+  python3 developer/fetch_binaries.py
+Ikkinchi buyruq FFmpeg va Windows runtime'ni internetdan yuklab, SHA-256
+bilan tekshiradi. So'ng TEKSHIRISH.command bilan paketni tekshiring.
+
 MA'LUMOTLAR QAYERDA
 
 Navbat, sozlamalar va jurnallar shu papka ichidagi data/ papkasida saqlanadi.
